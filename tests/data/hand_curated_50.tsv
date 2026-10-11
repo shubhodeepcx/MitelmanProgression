@@ -1,0 +1,51 @@
+item	stratum	case_id	InvNo	disease	karyotype	expected_events_by_clone	expected_parent_by_clone	expected_ordered_pairs	annotator	status	notes
+1	AML single clone	7175:1	1	AML	46,XY,t(11;19)(q23;p13)					todo	
+2	AML single clone	5079:29	1	AML	46,XX,del(11)(q23)					todo	
+3	AML single clone	16351:102	1	AML	47,XY,+13					todo	
+4	AML single clone	13177:3	1	AML	45,XX,inv(3)(q21q26),-7					todo	
+5	AML single clone	14811:29656	1	AML	45,XX,inv(3)(q21q26),t(3;14)(q2?7;q13),-7					todo	
+6	AML single clone	18271:28	1	AML	46,XY,t(7;11)(p15;p15)					todo	
+7	AML complex single clone	11626:16	1	AML	88-92,XXXX,-7,i(7)(q10)x2,-9,del(9)(q31),+1-3mar,inc					todo	
+8	AML complex single clone	11823:58	1	AML	44-45,XX,der(5;17)(q10;q10),-7,del(8)(p11),-19,-20,-21,+3-4mar					todo	
+9	AML complex single clone	3245:1	1	AML	45,XY,-5,-7,+8,+?del(11)(q11),+?der(11)t(11;22)(?p11;q11)ins(11;?)(?p11;?),-12,-16,del(22)(q11)					todo	
+10	AML complex single clone	1070:36	1	AML	49,XY,+13,+19,+21					todo	
+11	AML idem sideline	17899:12	1	AML	47,XX,+8/48,idem,+19					todo	
+12	AML idem sideline	12288:37	1	AML	45,XX,del(1)(q21),del(3)(p13),-4,-5,add(7)(q32),+8,-9,-15,-17,add(17)(p11),der(19)t(9;19)(q23;q13),add(20)(p?12),add(20)(p11),+der(?)t(?;1)(?;q21),+der(?)t(?;20)x2/90,idemx2					todo	
+13	AML idem sideline	15426:8	1	AML	45,XX,-15,add(18)(q21),add(19)(p13)/46,idem,del(13)(q?)					todo	
+14	AML idem sideline	9764:39	1	AML	48,XY,-3,inv(4)(p15q11),del(5)(q21q34),-7,-14,add(17)(p11),+5mar/48,idem,add(Y)(q12)					todo	
+15	AML idem sideline	8407:47	1	AML	46,XX,dup(1)(q21q44)/46,idem,t(18;21)(q21;q22)					todo	
+16	AML idem sideline	16734:8	1	AML	46,XY,der(21)i(21)(q10)dup(21)(q11q22)/46,idem,del(7)(q22q32)					todo	
+17	AML idem sideline	17125:301	1	AML	46,XX,inv(16)(p13q22)/47,idem,+22					todo	
+18	AML idem sideline	2387:1	1	AML	45,X,-Y,del(7)(q3?4),t(8;21)(q22;q22)/46,idem,+der(21)t(8;21)(q22;q22)					todo	
+19	AML idem, >=3 clones	14266:27	1	AML	46,XY,der(5)t(5;14)(q11;q11),+8,der(11)t(11;11),-14,-18,+19/47,idem,+21/44,XY,der(5)t(5;14)(q11;q11),del(7)(q22),der(11)t(11;11),-14,-18					todo	
+20	AML idem, >=3 clones	9824:17	1	AML	45,XY,-7,add(17)(p11)/45,idem,add(11)(q23)/45,idem,del(9)(p13),add(11)(q23)/45,idem,del(3)(q25),add(11)(q23)					todo	
+21	AML idem, >=3 clones	13879:16	1	AML	46,XX,-5,del(16)(q11),der(17)t(5;17)(?;p13),der(19)dup(19)(?p13p11)t(6;19)(?;p13),der(20)t(16;20)(?;q11),+21/45,idem,der(11;21)(q10;10)/45,XX,-5,dic(15;19)(p11;q13),der(16)t(16;20)(q11;?),der(17)t(5;17)(?;p13)					todo	
+22	AML idem, >=3 clones	12914:12	1	AML	46,XX,add(1)(q42),del(6)(q23),del(9)(p13),-13,-16,-19,+3mar,9-15dmin/45-47,idem,del(4)(q25),+8/85-89,idemx2					todo	
+23	AML idem, >=3 clones	16821:2	1	AML	48,XY,del(5)(q33),+del(8)(p12),i(11)(q10),+14,der(21)/49,idem,+18/52-54,idem,+17,+18,+18					todo	
+24	AML idem, >=3 clones	12914:6	1	AML	46,XY,3-48dmin/46,idem,add(17)(p11)/47,idem,+4					todo	
+25	AML related, no idem	17264:1072	1	AML	46,XY,del(5)(q21q34)/47,XY,+22/48,XY,+Y,+22/49,XY,+6,+21,+22					todo	
+26	AML related, no idem	810:80	1	AML	43,XY,-2,del(4)(q?),-9,del(11)(q?),-15,-19,-20,+2mar/46,XY,-15,-20,+2mar					todo	
+27	AML related, no idem	17264:395	1	AML	46,XY,der(5;7)(p10;p10),der(17;20)(q10;p10),+der(20)del(20)(p13p11)del(20)(q11q13)x2,hsr(21)(q?22)/46,XY,der(5;7)(p10;p10),der(13)t(1;13)(?q32;p11),der(17;20)(q10;p10),+der(20)del(20)(p13p11)del(20)(q11q13)x2,hsr(21)(q?22)					todo	
+28	AML related, no idem	17264:1053	1	AML	44,XX,-3,der(11)ins(11;18)(p11;q21q23),-17,r(18)(p11q12)/44,XX,der(11)t(11;11)(p13;q23)ins(11;18)(p11;q21q23),r(18)(p11q12)/44,XX,-3,der(11)ins(11;18)(p11;q21q23),der(16)t(11;16)(q23;p13),-17,r(18)(p11q12)					todo	
+29	AML related, no idem	18577:183	1	AML	46,XX,del(5)(q14q34)/47,XX,del(5)(q14q34),der(17)t(17;18)(q25;q12),del(18)(q12q23),+der(21)hsr(21)(q22)t(17;21)(q25;q22)/47,XX,del(2)(p25p16),del(5)(q14q34),del(7)(q21q36),der(17)t(17;18)(q25;q12),del(18)(q12q23),+der(21)hsr(21)(q22)t(17;21)(q25;q22)					todo	
+30	AML unrelated clones	1241:3	1	AML	46,XY,t(2;11)(p21;q23)/45,X,-Y					todo	
+31	AML unrelated clones	15185:4	1	AML	46,XY,der(7)t(1;7)(q21;q22)/46,XY,der(6)t(1;6)(q21;p25)/46,XY,der(10)t(1;10)(q21;q22)					todo	
+32	AML unrelated clones	9829:18	2	AML	46,XX,t(6;9)(p11;p11),t(6;13)(p25;q14),-13,+mar/46,XX,del(1)(p32p11),-4,-5,add(7)(q31-32),-9,+dup(11)(q13q23),-12,del(14)(q22),-16,-17,ins(17;1)(q25;q21q25),+der(?)t(?;12)(?;q?),+2mar					todo	
+33	AML unrelated clones	14968:25	1	AML	44,XX,-7,add(11)(p?),-17,+18,+mar/44-45,XX,-3,+6,-7,add(11)(p?),add(14)(q32),-16,+18,+22,+mar					todo	
+34	AML polyploid idemx2	18691:31	1	AML	43,X,-Y,del(5)(q22q35),add(7)(q21),+8,add(9)(q13),-10,add(11)(p15),der(12)del(12)(p13p12)add(12)(q13),+add(15)(q22),-16,-17,-18,-19,add(20)(p12),+mar/82-85,idemx2,idic(1)(q44),-del(7)x2,+17,+18/75,idemx2,+1,+add(1)(q21)/72-79,idemx2,+add(1)(q25),-add(1)(q21),-15/69-75,idemx2,-15,-15,-21,-mar					todo	
+35	AML polyploid idemx2	18748:47	1	AML	45-46,XX,del(5)(q14q34),+7,der(7;22)add(7)(q22),der(7;17)(p10;q10),-10,+der(?)r(11)hsr(11)(q23),+1-2mar/90-91,idemx2					todo	
+36	AML polyploid idemx2	9935:25	1	AML	46,XY,t(8;21)(q22;q22)/92,idemx2					todo	
+37	constitutional c	15747:139	1	ALL	47,del(X)(p22p22),Y,del(9)(p13p13),del(12)(p13p13),+21c					todo	
+38	constitutional c	4134:27	1	ALL	48,XY,+10,+21c					todo	
+39	constitutional c	6848:13	1	AML	49,XY,+8,+21c,+21					todo	
+40	uncertain ?	12288:17	1	AML	46-49,XX,add(5)(q13),del(9)(q?13q22),-18,+der(20)del(20)(p11)del(20)(q11)x1-4/47-50,idem,+22/47-51,idem,+?del(16)(q?21)/48-51,idem,+21					todo	
+41	uncertain ?	13328:238_06-04	1	AML	46,XY,der(1)t(1;?3)(p36;q21),del(10)(q24)/45,idem,-10,-del(10)(q24)					todo	
+42	uncertain ?	11995:84	1	AML	45,Y,t(X;1)(p23;q21),del(5)(q13q33),add(7)(q22),-12,del(14)(q12q24),der(17)t(?12;17)(p11;p13)/50,idem,der(1)t(1;9)(p13;p12)t(X;1)(p23;q21),+8,+8,der(9)t(1;9)(p13;p12),del(11)(q14),+13,+2mar					todo	
+43	KMT2A variant	7531:308	1	AML	46,XX,t(6;11)(q27;q23)					todo	
+44	KMT2A variant	7524:409	1	AML	46,XY,t(9;11)(p21;q23)					todo	
+45	KMT2A variant	11580:375	1	AML	46,XY,t(9;11)(p22;q23)					todo	
+46	MDS multi-clone	13173:12	1	MDS	41,X,-Y,dic(3;13)(q26;p13),del(5)(q22q33),add(6)(p23),der(8)t(8;17)(p11;q11),-17,-20,del(20)(q11),-21,+mar/43,idem,+Y,add(4)(q21),+21					todo	
+47	MDS multi-clone	7443:17	1	MDS	46,XX,del(17)(p13)/48,idem,+14,+15/45,idem,add(14)(p11),-20					todo	
+48	MDS multi-clone	8033:2	1	MDS	47,XY,+8/48,idem,+19					todo	
+49	CML multi-clone	17540:7	1	CML	47,XY,add(20)(p12),+der(21)/47,idem,del(4)(q31)					todo	
+50	CML multi-clone	4823:1	1	CML	46,XY,t(9;22)(q34;q11),-19,+der(22)t(9;22)(q34;q11)/46,XY,add(9)(p13),t(9;22)(q34;q11),add(14)(q32)/46,XY,add(9)(p13),t(9;22)(q34;q11),add(14)(q32),-19,+der(22)t(9;22)(q34;q11)					todo	
