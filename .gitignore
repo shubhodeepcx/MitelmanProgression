@@ -3,3 +3,7 @@ __pycache__/
 *.pyc
 .pytest_cache/
 data/interim/
+*.aux
+*.log
+*.out
+report/main.pdf

@@ -1,0 +1,19 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "karyoprog"
+version = "1.0.0"
+description = "Per-disease cytogenetic progression models (co-occurrence, CBN, MHN) from Mitelman karyotypes"
+readme = "README.md"
+license = {text = "MIT"}
+authors = [{name = "Shubhodeep Chatterjee"}]
+requires-python = ">=3.10"
+dependencies = ["pandas>=2.0", "numpy", "scipy", "matplotlib", "networkx"]
+
+[project.optional-dependencies]
+test = ["pytest"]
+
+[tool.setuptools]
+packages = ["karyoprog"]

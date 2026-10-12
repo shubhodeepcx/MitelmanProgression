@@ -1,0 +1,17 @@
+cff-version: 1.2.0
+message: "If you use this software or the event tables, please cite it as below."
+title: "MitelmanProgression: per-disease cytogenetic progression models from the Mitelman Database"
+authors:
+  - family-names: Chatterjee
+    given-names: Shubhodeep
+version: 1.0.0
+date-released: 2026-10-12
+license: MIT
+repository-code: "https://github.com/shubhodeepcx/MitelmanProgression"
+keywords:
+  - cytogenetics
+  - karyotype
+  - Mitelman Database
+  - Mutual Hazard Networks
+  - conjunctive Bayesian networks
+  - haematological malignancy
