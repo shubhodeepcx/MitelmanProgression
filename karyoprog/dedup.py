@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Flag cases that are probably the same patient reported in more than one paper.
 
 Mitelman has no usable patient identifier (PatientID is deprecated), so a

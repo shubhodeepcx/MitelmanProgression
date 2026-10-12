@@ -1,6 +1,7 @@
+# Author: Shubhodeep Chatterjee
 """Mitelman download -> clone feature table -> frozen vocabulary -> tidy event table.
 
-Entry points used by scripts/build_tables.py:
+Entry points used by scripts/01_build_clone_features.py and scripts/04_build_tables.py:
   clone_feature_table()  one row per abnormal clone with atomic features, tree position
   case_table()           one row per case with final disease group and duplicate flag
   tidy_event_table()     the released table: case_id, disease, event, clone_id, inferred_depth, ...
@@ -31,7 +32,14 @@ def clone_feature_table(data_dir=io.DEFAULT_DIR):
     clones = io.load_clones(data_dir)
     cv = io.read_table("CYTOVAL", data_dir)
     cv["InvNo"] = cv.InvNo.astype(int)
-    valid = {(r, c, i) for r, c, i, m in zip(cv.RefNo, cv.CaseNo, cv.InvNo, cv.Message) if m != "Invalid"}
+    # CytoConverter clone numbers are positions in CytoConvInput. Use its calls only when the
+    # syntax checker accepted the investigation AND kept the same number of clones as KCLONE;
+    # otherwise positions may be shifted and we fall back to the ISCN text alone.
+    n_kclone = clones.groupby(["RefNo", "CaseNo", "InvNo"]).size().to_dict()
+    n_input = {(r, c, i): len([x for x in s.split("/") if x.strip()])
+               for r, c, i, s in zip(cv.RefNo, cv.CaseNo, cv.InvNo, cv.CytoConvInput)}
+    valid = {(r, c, i) for r, c, i, m in zip(cv.RefNo, cv.CaseNo, cv.InvNo, cv.Message)
+             if m != "Invalid" and n_input.get((r, c, i)) == n_kclone.get((r, c, i))}
     calls = cn_calls(data_dir)
     callmap = {(r, c, int(i), int(k)): (f.split("|") if f else [])
                for r, c, i, k, f in zip(calls.RefNo, calls.CaseNo, calls.InvNo, calls.CloneNo, calls.cn_features)}

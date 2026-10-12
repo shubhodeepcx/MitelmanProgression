@@ -1,4 +1,5 @@
-"""Step 3: the released tables, built with config/vocabulary_frozen.json.
+# Author: Shubhodeep Chatterjee
+"""Step 4: the released tables, built with config/vocabulary_frozen.json.
 
 results/tables/
   event_table.tsv.gz        one row per (case, investigation, abnormal clone, event): the tidy table
@@ -38,7 +39,10 @@ pairs = pairs.join(meta, on="case_id")
 pairs.to_csv(OUT / "ordered_pairs.tsv.gz", sep="\t", index=False)
 
 # case x event matrices (first investigation, any clone, non-duplicates; all-zero rows kept)
-first = ev[ev.InvNo == ev.groupby("case_id").InvNo.transform("min")]
+# "first investigation" = the earliest investigation with an abnormal clone (as in 03), not the earliest
+# one that happens to carry a vocabulary event
+first_inv = cf.groupby("case_id").InvNo.min()
+first = ev[ev.InvNo == ev.case_id.map(first_inv)]
 for d, spec in vocab["diseases"].items():
     ids = cases[(cases.disease == d) & ~cases.is_duplicate].case_id
     m = (first[first.disease == d].assign(v=1).pivot_table(index="case_id", columns="event", values="v",

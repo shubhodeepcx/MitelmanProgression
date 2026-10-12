@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Step 1: clone feature table and case table (writes data/interim/, results/tables/)."""
 import sys
 from pathlib import Path

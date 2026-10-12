@@ -2,18 +2,18 @@
   "criterion": "Choose the per-disease minimum event count N before any modelling.\n\nCriterion: with at most 20 events (190 pairs, Bonferroni alpha = 0.05/190, two-sided),\nan event seen in N cases must give >= 80% power, against a partner event of 10%\nfrequency, to detect BOTH\n  - co-occurrence with odds ratio 3, and\n  - mutual exclusivity with odds ratio 0.2,\nusing the exact conditional (Fisher) test. Cohort size n = non-duplicate cases.\nN is the larger of the two minima. Written to config/power_threshold.json.",
   "diseases": {
     "AML": {
-      "n_cases": 20723,
+      "n_cases": 20753,
       "N_cooccurrence_OR3": 119,
       "N_exclusivity_OR0.2": 201,
       "N": 201,
       "N_as_fraction": 0.0097
     },
     "APL": {
-      "n_cases": 2371,
+      "n_cases": 2341,
       "N_cooccurrence_OR3": 130,
       "N_exclusivity_OR0.2": 196,
       "N": 196,
-      "N_as_fraction": 0.0827
+      "N_as_fraction": 0.0837
     },
     "MDS": {
       "n_cases": 5734,

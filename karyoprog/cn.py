@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Arm-level copy-number calls per clone from CytoConverter segments.
 
 CytoConverter (shipped in the Mitelman download as CYTOCONVERTED) reports each

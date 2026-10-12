@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Choose the per-disease minimum event count N before any modelling.
 
 Criterion: with at most 20 events (190 pairs, Bonferroni alpha = 0.05/190, two-sided),

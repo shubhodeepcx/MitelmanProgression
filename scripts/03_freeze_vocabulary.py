@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Freeze the per-disease event vocabulary.
 
 For each disease: count non-duplicate cases whose first investigation has the event in

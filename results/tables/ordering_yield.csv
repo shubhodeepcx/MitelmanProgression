@@ -1,8 +1,8 @@
 ,cases,events_frozen,cases_with_order,of_which_unselected,meets_200_rule
-AML,20723,20,1471,569,True
-APL,2371,2,61,29,False
-MDS,5734,13,408,114,True
-CML,4819,9,239,145,True
-ALL,12842,20,610,133,True
-CLL,3469,6,227,113,True
-MM,2096,16,58,37,False
+AML,20753,20,1471,567,True
+APL,2341,2,64,31,False
+MDS,5734,13,403,112,True
+CML,4819,9,251,156,True
+ALL,12842,20,609,136,True
+CLL,3469,6,226,113,True
+MM,2096,16,55,34,False

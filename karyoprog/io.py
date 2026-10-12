@@ -1,3 +1,4 @@
+# Author: Shubhodeep Chatterjee
 """Loaders for the Mitelman bulk download (mitelman_db.zip, tab-separated *.TXT.DATA)."""
 from pathlib import Path
 import pandas as pd
