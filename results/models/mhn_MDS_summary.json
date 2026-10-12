@@ -1,0 +1,72 @@
+{
+  "disease": "MDS",
+  "n_cases": 5734,
+  "n_events": 12,
+  "events": [
+    "5q loss",
+    "-7",
+    "+8",
+    "7q-",
+    "17p loss",
+    "20q-",
+    "1q gain",
+    "18 loss",
+    "13q loss",
+    "-Y",
+    "12p loss",
+    "+21"
+  ],
+  "lambda_c": 0.3,
+  "lambda_": 5.231949773282176e-05,
+  "heldout_loglik": {
+    "mhn_by_c": {
+      "0.1": -3.727887472808086,
+      "0.3": -3.725899869991398,
+      "1.0": -3.7297036569808713,
+      "3.0": -3.749230915479938
+    },
+    "independence": -3.905306855931526
+  },
+  "n_unselected": 2319,
+  "n_post2000": 3686,
+  "simulation_recovery": [
+    {
+      "n_true": 90,
+      "n_called": 99,
+      "recall": 0.6444444444444445,
+      "precision": 0.5858585858585859,
+      "corr_offdiag": 0.23274725849122593
+    },
+    {
+      "n_true": 90,
+      "n_called": 89,
+      "recall": 0.6111111111111112,
+      "precision": 0.6179775280898876,
+      "corr_offdiag": 0.42660035310286326
+    },
+    {
+      "n_true": 90,
+      "n_called": 97,
+      "recall": 0.5,
+      "precision": 0.4639175257731959,
+      "corr_offdiag": -0.07686885229371772
+    }
+  ],
+  "sensitivity": {
+    "unselected": {
+      "n_true": 90,
+      "n_called": 98,
+      "recall": 0.8,
+      "precision": 0.7346938775510204,
+      "corr_offdiag": 0.795338301477359
+    },
+    "post2000": {
+      "n_true": 90,
+      "n_called": 93,
+      "recall": 0.8333333333333334,
+      "precision": 0.8064516129032258,
+      "corr_offdiag": 0.8404054347811748
+    }
+  },
+  "n_strong_edges": 90
+}

@@ -1,0 +1,37 @@
+disease,kind,a,b,why,baseline,clone_a_before_b,clone_b_before_a,baseline_pass,mhn_theta_sum,mhn_sign_support,mhn_pass,clone_pass,mhn_P_a_before_b,mhn_order_support,cbn_edge_support,cbn_pass
+AML,exclusive,t(8;21),inv(16),alternative core-binding-factor founding fusions,exclusive,1,0,True,-10.99,1.0,True,,,,,
+AML,exclusive,t(8;21),KMT2A,distinct founding rearrangements,exclusive,1,0,True,-10.56,1.0,True,,,,,
+AML,exclusive,inv(16),KMT2A,distinct founding rearrangements,exclusive,0,1,True,-10.83,1.0,True,,,,,
+AML,exclusive,t(8;21),5q loss,"5q loss belongs to secondary/complex AML, rare in CBF AML",exclusive,1,0,True,-7.61,1.0,True,,,,,
+AML,exclusive,inv(16),-7,monosomy 7 rare in CBF AML,exclusive,0,0,True,-10.88,1.0,True,,,,,
+AML,cooccur,5q loss,17p loss,TP53-associated complex karyotype,co-occurring,96,5,True,-4.24,0.04,False,,,,,
+AML,cooccur,inv(16),+22,+22 is a characteristic secondary change of inv(16),co-occurring,67,2,True,-0.94,0.04,False,,,,,
+AML,cooccur,t(8;21),-Y,sex-chromosome loss is a characteristic secondary change of t(8;21),co-occurring,75,2,True,-1.34,0.04,False,,,,,
+AML,before,t(8;21),-Y,founding fusion precedes secondary losses,co-occurring,75,2,,,,True,True,0.997,0.96,1.0,True
+AML,before,t(8;21),9q-,founding fusion precedes secondary losses,co-occurring,47,0,,,,False,True,0.142,0.12,,
+AML,before,inv(16),+22,founding fusion precedes secondary gains,co-occurring,67,2,,,,True,True,0.989,1.0,,
+AML,before,inv(16),+8,founding fusion precedes secondary gains,exclusive,44,1,,,,False,True,0.0,0.0,0.0,False
+AML,before,KMT2A,+8,founding fusion precedes secondary gains,exclusive,61,4,,,,False,True,0.004,0.0,0.0,False
+APL,before,t(15;17),+8,PML-RARA is the founding event; +8 the commonest secondary change,,59,5,,,,,True,,,,
+MDS,cooccur,5q loss,17p loss,TP53-associated complex karyotype,co-occurring,23,3,True,-3.6,0.0,False,,,,,
+MDS,cooccur,5q loss,-7,complex karyotype in high-risk MDS,not significant,39,9,False,-5.54,0.0,False,,,,,
+MDS,before,5q loss,17p loss,del(5q) is an early event; TP53/17p loss marks progression,co-occurring,23,3,,,,False,True,0.008,0.0,1.0,True
+CML,before,t(9;22),extra Ph,BCR-ABL1 is the founding event; additional changes mark progression,co-occurring,85,0,,,,True,True,0.977,1.0,1.0,True
+CML,before,t(9;22),+8,major-route additional abnormality,co-occurring,121,10,,,,False,True,0.498,0.52,0.0,False
+CML,before,t(9;22),i(17q),major-route additional abnormality,not significant,15,1,,,,True,True,0.924,1.0,1.0,True
+CML,before,t(9;22),+19,major-route additional abnormality,not significant,54,0,,,,True,True,0.802,0.92,0.95,True
+CML,cooccur,+8,extra Ph,major-route abnormalities cluster in blast phase,co-occurring,31,33,True,0.91,0.88,True,,,,,
+ALL,exclusive,t(9;22),KMT2A,distinct founding rearrangements,exclusive,0,1,True,-10.37,1.0,True,,,,,
+ALL,exclusive,t(9;22),t(1;19),distinct founding rearrangements,exclusive,1,0,True,-6.5,1.0,True,,,,,
+ALL,exclusive,KMT2A,t(1;19),distinct founding rearrangements,exclusive,0,0,True,-7.47,1.0,True,,,,,
+ALL,exclusive,KMT2A,+21,KMT2A-rearranged ALL is rarely hyperdiploid,exclusive,5,1,True,-6.25,1.0,True,,,,,
+ALL,cooccur,+4,+10,trisomies 4 and 10 define favourable high hyperdiploid ALL,co-occurring,9,3,True,-0.25,0.24,False,,,,,
+ALL,before,t(9;22),-7,monosomy 7 is a common secondary change in Ph-positive ALL,not significant,26,1,,,,False,True,0.17,0.24,,
+ALL,before,t(9;22),9p loss,9p (CDKN2A) loss is a common secondary change in Ph-positive ALL,exclusive,31,1,,,,False,True,0.518,0.48,0.0,False
+CLL,exclusive,+12,13q loss,trisomy 12 and del(13q) are largely alternative early events,exclusive,27,2,True,-5.93,1.0,True,,,,,
+CLL,before,13q loss,17p loss,del(13q) is early; del(17p) is acquired with progression,not significant,7,6,,,,False,True,0.249,0.0,0.65,True
+CLL,before,+12,17p loss,trisomy 12 is early; del(17p) is acquired with progression,exclusive,10,1,,,,True,True,0.927,1.0,0.0,False
+MM,cooccur,+9,+15,odd-numbered trisomies define hyperdiploid myeloma,co-occurring,0,0,True,,,,,,,,
+MM,cooccur,+3,+5,odd-numbered trisomies define hyperdiploid myeloma,co-occurring,1,0,True,,,,,,,,
+MM,exclusive,t(11;14),+9,IGH-translocated and hyperdiploid myeloma are largely distinct,exclusive,0,0,True,,,,,,,,
+MM,exclusive,t(11;14),+15,IGH-translocated and hyperdiploid myeloma are largely distinct,exclusive,1,0,True,,,,,,,,

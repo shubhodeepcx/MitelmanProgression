@@ -1,0 +1,53 @@
+{
+  "_doc": "Established relationships used as a test set (written before the model fits). kind: 'exclusive' = the two events rarely co-occur; 'cooccur' = they co-occur more than chance; 'before' = a typically precedes b. Each is checked against the co-occurrence baseline, the MHN (theta and simulated order) and, for 'before', the within-patient clone orders. References are to well-established cytogenetic biology (WHO/ELN classifications and standard reviews).",
+  "AML": [
+    {"kind": "exclusive", "a": "t(8;21)", "b": "inv(16)", "why": "alternative core-binding-factor founding fusions"},
+    {"kind": "exclusive", "a": "t(8;21)", "b": "KMT2A", "why": "distinct founding rearrangements"},
+    {"kind": "exclusive", "a": "inv(16)", "b": "KMT2A", "why": "distinct founding rearrangements"},
+    {"kind": "exclusive", "a": "t(8;21)", "b": "5q loss", "why": "5q loss belongs to secondary/complex AML, rare in CBF AML"},
+    {"kind": "exclusive", "a": "inv(16)", "b": "-7", "why": "monosomy 7 rare in CBF AML"},
+    {"kind": "cooccur", "a": "5q loss", "b": "17p loss", "why": "TP53-associated complex karyotype"},
+    {"kind": "cooccur", "a": "inv(16)", "b": "+22", "why": "+22 is a characteristic secondary change of inv(16)"},
+    {"kind": "cooccur", "a": "t(8;21)", "b": "-Y", "why": "sex-chromosome loss is a characteristic secondary change of t(8;21)"},
+    {"kind": "before", "a": "t(8;21)", "b": "-Y", "why": "founding fusion precedes secondary losses"},
+    {"kind": "before", "a": "t(8;21)", "b": "9q-", "why": "founding fusion precedes secondary losses"},
+    {"kind": "before", "a": "inv(16)", "b": "+22", "why": "founding fusion precedes secondary gains"},
+    {"kind": "before", "a": "inv(16)", "b": "+8", "why": "founding fusion precedes secondary gains"},
+    {"kind": "before", "a": "KMT2A", "b": "+8", "why": "founding fusion precedes secondary gains"}
+  ],
+  "MDS": [
+    {"kind": "cooccur", "a": "5q loss", "b": "17p loss", "why": "TP53-associated complex karyotype"},
+    {"kind": "cooccur", "a": "5q loss", "b": "-7", "why": "complex karyotype in high-risk MDS"},
+    {"kind": "before", "a": "5q loss", "b": "17p loss", "why": "del(5q) is an early event; TP53/17p loss marks progression"}
+  ],
+  "CML": [
+    {"kind": "before", "a": "t(9;22)", "b": "extra Ph", "why": "BCR-ABL1 is the founding event; additional changes mark progression"},
+    {"kind": "before", "a": "t(9;22)", "b": "+8", "why": "major-route additional abnormality"},
+    {"kind": "before", "a": "t(9;22)", "b": "i(17q)", "why": "major-route additional abnormality"},
+    {"kind": "before", "a": "t(9;22)", "b": "+19", "why": "major-route additional abnormality"},
+    {"kind": "cooccur", "a": "+8", "b": "extra Ph", "why": "major-route abnormalities cluster in blast phase"}
+  ],
+  "ALL": [
+    {"kind": "exclusive", "a": "t(9;22)", "b": "KMT2A", "why": "distinct founding rearrangements"},
+    {"kind": "exclusive", "a": "t(9;22)", "b": "t(1;19)", "why": "distinct founding rearrangements"},
+    {"kind": "exclusive", "a": "KMT2A", "b": "t(1;19)", "why": "distinct founding rearrangements"},
+    {"kind": "exclusive", "a": "KMT2A", "b": "+21", "why": "KMT2A-rearranged ALL is rarely hyperdiploid"},
+    {"kind": "cooccur", "a": "+4", "b": "+10", "why": "trisomies 4 and 10 define favourable high hyperdiploid ALL"},
+    {"kind": "before", "a": "t(9;22)", "b": "-7", "why": "monosomy 7 is a common secondary change in Ph-positive ALL"},
+    {"kind": "before", "a": "t(9;22)", "b": "9p loss", "why": "9p (CDKN2A) loss is a common secondary change in Ph-positive ALL"}
+  ],
+  "CLL": [
+    {"kind": "exclusive", "a": "+12", "b": "13q loss", "why": "trisomy 12 and del(13q) are largely alternative early events"},
+    {"kind": "before", "a": "13q loss", "b": "17p loss", "why": "del(13q) is early; del(17p) is acquired with progression"},
+    {"kind": "before", "a": "+12", "b": "17p loss", "why": "trisomy 12 is early; del(17p) is acquired with progression"}
+  ],
+  "APL": [
+    {"kind": "before", "a": "t(15;17)", "b": "+8", "why": "PML-RARA is the founding event; +8 the commonest secondary change"}
+  ],
+  "MM": [
+    {"kind": "cooccur", "a": "+9", "b": "+15", "why": "odd-numbered trisomies define hyperdiploid myeloma"},
+    {"kind": "cooccur", "a": "+3", "b": "+5", "why": "odd-numbered trisomies define hyperdiploid myeloma"},
+    {"kind": "exclusive", "a": "t(11;14)", "b": "+9", "why": "IGH-translocated and hyperdiploid myeloma are largely distinct"},
+    {"kind": "exclusive", "a": "t(11;14)", "b": "+15", "why": "IGH-translocated and hyperdiploid myeloma are largely distinct"}
+  ]
+}

@@ -1,0 +1,65 @@
+{
+  "disease": "CLL",
+  "n_cases": 3469,
+  "n_events": 5,
+  "events": [
+    "+12",
+    "13q loss",
+    "17p loss",
+    "11q-",
+    "6q-"
+  ],
+  "lambda_c": 0.3,
+  "lambda_": 8.648025367541078e-05,
+  "heldout_loglik": {
+    "mhn_by_c": {
+      "0.1": -2.0450712202864985,
+      "0.3": -2.0448600057089967,
+      "1.0": -2.0470074305425596,
+      "3.0": -2.0520326642958455
+    },
+    "independence": -2.099887629430757
+  },
+  "n_unselected": 2169,
+  "n_post2000": 2138,
+  "simulation_recovery": [
+    {
+      "n_true": 15,
+      "n_called": 15,
+      "recall": 1.0,
+      "precision": 1.0,
+      "corr_offdiag": 0.80595947224295
+    },
+    {
+      "n_true": 15,
+      "n_called": 17,
+      "recall": 1.0,
+      "precision": 0.8823529411764706,
+      "corr_offdiag": 0.6091691871820911
+    },
+    {
+      "n_true": 15,
+      "n_called": 16,
+      "recall": 0.8666666666666667,
+      "precision": 0.8125,
+      "corr_offdiag": 0.7283826730657351
+    }
+  ],
+  "sensitivity": {
+    "unselected": {
+      "n_true": 15,
+      "n_called": 16,
+      "recall": 0.9333333333333333,
+      "precision": 0.875,
+      "corr_offdiag": 0.9521942871499143
+    },
+    "post2000": {
+      "n_true": 15,
+      "n_called": 16,
+      "recall": 0.9333333333333333,
+      "precision": 0.875,
+      "corr_offdiag": 0.9769613905961694
+    }
+  },
+  "n_strong_edges": 15
+}
