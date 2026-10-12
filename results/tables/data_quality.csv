@@ -1,0 +1,8 @@
+disease,cases,duplicates_flagged,investigations_with_abnormal_clone,pct_with_cytoconverter,cases_with_several_investigations
+AML,20853,100,21601,95.0,712
+APL,2342,1,2400,89.0,55
+MDS,5741,7,5968,94.9,202
+CML,4854,35,5253,95.1,322
+ALL,12935,93,13210,92.5,374
+CLL,3474,5,3727,93.3,210
+MM,2100,4,2137,92.8,49

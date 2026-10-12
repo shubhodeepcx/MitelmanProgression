@@ -1,0 +1,2 @@
+event_a,event_b,n_a,n_b,n_both,expected_null,odds_ratio,p_fisher,p_perm,q_fisher,q_perm,direction,significant
+t(15;17),+8,1920,279,214,214.0,0.6841309496916818,0.01597665182014556,1.0,0.01597665182014556,1.0,exclusive,False
