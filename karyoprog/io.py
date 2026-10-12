@@ -55,5 +55,5 @@ def load_clones(data_dir=DEFAULT_DIR):
     kc["clone"] = kc.CloneLong.where(kc.CloneLong.str.strip() != "", kc.CloneShort).str.strip()
     kc["InvNo"] = kc.InvNo.astype(int)
     kc["CloneNo"] = kc.CloneNo.astype(int)
-    return kc[["RefNo", "CaseNo", "InvNo", "CloneNo", "clone"]].sort_values(
+    return kc[["RefNo", "CaseNo", "InvNo", "CloneNo", "clone", "ChromoMin", "ChromoMax"]].sort_values(
         ["RefNo", "CaseNo", "InvNo", "CloneNo"]).reset_index(drop=True)

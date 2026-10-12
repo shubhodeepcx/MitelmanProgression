@@ -1,0 +1,138 @@
+disease,event,cases,pct,N,selected,defining
+AML,complex,5570,26.88,201,True,False
+AML,5q loss,3495,16.87,201,True,False
+AML,+8,3369,16.26,201,True,False
+AML,-7,2775,13.39,201,True,False
+AML,t(8;21),2113,10.2,201,True,False
+AML,17p loss,2071,9.99,201,True,False
+AML,KMT2A,1760,8.49,201,True,False
+AML,7q-,1602,7.73,201,True,False
+AML,+21,1444,6.97,201,True,False
+AML,-Y,1321,6.37,201,True,False
+AML,inv(16),1297,6.26,201,True,False
+AML,18 loss,1106,5.34,201,True,False
+AML,+22,874,4.22,201,True,False
+AML,+13,845,4.08,201,True,False
+AML,+19,771,3.72,201,True,False
+AML,9q-,744,3.59,201,True,False
+AML,12p loss,744,3.59,201,True,False
+AML,+11,739,3.57,201,True,False
+AML,inv(3)/t(3;3),677,3.27,201,True,False
+AML,-X,650,3.14,201,True,False
+AML,20q-,540,2.61,201,False,False
+AML,+4,489,2.36,201,False,False
+AML,3q26 other,402,1.94,201,False,False
+AML,3p-,379,1.83,201,False,False
+AML,t(9;22),366,1.77,201,False,False
+AML,t(6;9),211,1.02,201,False,False
+APL,t(15;17),1970,83.09,196,True,True
+APL,+8,287,12.1,196,True,False
+APL,17p loss,70,2.95,196,False,False
+APL,7q-,56,2.36,196,False,False
+APL,5q loss,51,2.15,196,False,False
+APL,9q-,49,2.07,196,False,False
+APL,+21,45,1.9,196,False,False
+APL,-Y,40,1.69,196,False,False
+APL,-7,30,1.27,196,False,False
+APL,12p loss,18,0.76,196,False,False
+APL,6q-,16,0.67,196,False,False
+APL,+22,12,0.51,196,False,False
+APL,-X,7,0.3,196,False,False
+APL,1q gain,5,0.21,196,False,False
+MDS,5q loss,2107,36.75,200,True,False
+MDS,complex,1822,31.78,200,True,False
+MDS,-7,1104,19.25,200,True,False
+MDS,+8,951,16.59,200,True,False
+MDS,7q-,761,13.27,200,True,False
+MDS,17p loss,615,10.73,200,True,False
+MDS,20q-,553,9.64,200,True,False
+MDS,1q gain,377,6.57,200,True,False
+MDS,18 loss,372,6.49,200,True,False
+MDS,13q loss,317,5.53,200,True,False
+MDS,-Y,289,5.04,200,True,False
+MDS,12p loss,264,4.6,200,True,False
+MDS,+21,257,4.48,200,True,False
+MDS,11q-,191,3.33,200,False,False
+MDS,+19,189,3.3,200,False,False
+MDS,3p-,142,2.48,200,False,False
+MDS,+22,130,2.27,200,False,False
+MDS,9q-,110,1.92,200,False,False
+MDS,3q26 other,100,1.74,200,False,False
+MDS,inv(3)/t(3;3),88,1.53,200,False,False
+MDS,-X,82,1.43,200,False,False
+MDS,idic(X)(q13),23,0.4,200,False,False
+CML,t(9;22),3552,73.71,199,True,True
+CML,+8,1108,22.99,199,True,False
+CML,extra Ph,734,15.23,199,True,False
+CML,17p loss,593,12.31,199,True,False
+CML,i(17q),416,8.63,199,True,False
+CML,+19,306,6.35,199,True,False
+CML,-Y,294,6.1,199,True,False
+CML,+21,203,4.21,199,True,False
+CML,3q26,203,4.21,199,True,False
+CML,-7,169,3.51,199,False,False
+CML,+22,125,2.59,199,False,False
+CML,complex,116,2.41,199,False,False
+CML,+10,94,1.95,199,False,False
+CML,+6,94,1.95,199,False,False
+CML,+17,89,1.85,199,False,False
+CML,9p loss,81,1.68,199,False,False
+CML,near-tetraploid,26,0.54,199,False,False
+ALL,+21,2961,23.06,201,True,False
+ALL,9p loss,2120,16.51,201,True,False
+ALL,high hyperdiploid,2050,15.96,201,True,False
+ALL,+X,1888,14.7,201,True,False
+ALL,+14,1590,12.38,201,True,False
+ALL,+6,1563,12.17,201,True,False
+ALL,+10,1496,11.65,201,True,False
+ALL,+18,1455,11.33,201,True,False
+ALL,t(9;22),1366,10.64,201,True,False
+ALL,+4,1364,10.62,201,True,False
+ALL,+17,1113,8.67,201,True,False
+ALL,KMT2A,1040,8.1,201,True,False
+ALL,13q loss,945,7.36,201,True,False
+ALL,6q-,931,7.25,201,True,False
+ALL,-7,902,7.02,201,True,False
+ALL,17p loss,822,6.4,201,True,False
+ALL,1q gain,766,5.96,201,True,False
+ALL,12p loss,737,5.74,201,True,False
+ALL,t(1;19),618,4.81,201,True,False
+ALL,hypodiploid,552,4.3,201,True,False
+ALL,t(12;21),540,4.2,201,False,False
+ALL,t(8;14),243,1.89,201,False,False
+ALL,extra Ph,201,1.57,201,False,False
+CLL,complex,1061,30.59,198,True,False
+CLL,+12,978,28.19,198,True,False
+CLL,13q loss,633,18.25,198,True,False
+CLL,17p loss,406,11.7,198,True,False
+CLL,11q-,393,11.33,198,True,False
+CLL,6q-,331,9.54,198,True,False
+CLL,t(14;18),158,4.55,198,False,False
+CLL,14q-,124,3.57,198,False,False
+CLL,t(11;14),120,3.46,198,False,False
+CLL,+18,101,2.91,198,False,False
+CLL,8p-,84,2.42,198,False,False
+CLL,+19,83,2.39,198,False,False
+CLL,+3,56,1.61,198,False,False
+CLL,2p gain,39,1.12,198,False,False
+MM,13 loss,849,40.51,195,True,False
+MM,+9,695,33.16,195,True,False
+MM,+15,675,32.2,195,True,False
+MM,+19,595,28.39,195,True,False
+MM,+3,534,25.48,195,True,False
+MM,1q gain,528,25.19,195,True,False
+MM,+7,520,24.81,195,True,False
+MM,+11,520,24.81,195,True,False
+MM,+5,512,24.43,195,True,False
+MM,1p-,483,23.04,195,True,False
+MM,+21,441,21.04,195,True,False
+MM,-X,381,18.18,195,True,False
+MM,17p loss,316,15.08,195,True,False
+MM,-Y,303,14.46,195,True,False
+MM,6q-,302,14.41,195,True,False
+MM,t(11;14),231,11.02,195,True,False
+MM,8p-,175,8.35,195,False,False
+MM,16q-,162,7.73,195,False,False
+MM,14q-,79,3.77,195,False,False
+MM,t(4;14),39,1.86,195,False,False
+MM,t(14;16),33,1.57,195,False,False
