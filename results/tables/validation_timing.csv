@@ -1,0 +1,6 @@
+disease,bt_events,mhn_vs_bt_pairs,mhn_vs_bt_agreement,cbn_vs_bt_orders,cbn_vs_bt_agreement,later_has_higher_base_wrong,later_has_higher_base_right,later_has_lower_base_wrong,later_has_lower_base_right,base_rate_fisher_p
+AML,19,148,0.5878378378378378,5,1.0,24,2,11,31,5.708722487377834e-08
+MDS,12,54,0.46296296296296297,4,0.75,8,1,10,5,0.35094653630122735
+CML,9,31,0.6774193548387096,8,1.0,2,3,2,6,1.0
+ALL,18,108,0.39814814814814814,6,1.0,20,7,14,21,0.01033317559780255
+CLL,5,6,0.6666666666666666,1,1.0,1,0,1,4,0.3333333333333333

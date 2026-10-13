@@ -1,5 +1,7 @@
 # MitelmanProgression
 
+[![tests](https://github.com/shubhodeepcx/MitelmanProgression/actions/workflows/tests.yml/badge.svg)](https://github.com/shubhodeepcx/MitelmanProgression/actions/workflows/tests.yml)
+
 **Author:** Shubhodeep Chatterjee
 
 Per-disease models of the order in which chromosomal aberrations accumulate in
@@ -16,38 +18,55 @@ Three models are fitted per disease and compared on the same data:
 2. a conjunctive Bayesian network (CBN) with observation noise;
 3. a Mutual Hazard Network (MHN), the headline model.
 
-Every ordering claim is checked by bootstrap stability, held-out likelihood,
+A fourth, model-free analysis ranks events by timing directly from the within-patient
+clone orders (Bradley-Terry with case-bootstrap intervals).
+
+Every ordering claim is checked by bootstrap stability, 5-fold held-out likelihood,
 simulation recovery, agreement with established cytogenetic biology, agreement
 with the within-patient clone orders, and refits on unselected series and on
 recent publications (publication-bias sensitivity). The report is in `report/`.
 
 ## Run
 
-    pip install -r requirements.txt     # python-docx only for the report
-    bash run_all.sh
+    pip install -e ".[test,report]"      # or: pip install -r requirements.txt
+    bash run_all.sh                     # download if needed, every step, tests
 
-`run_all.sh` downloads the Mitelman bulk files if they are missing, rebuilds every
-table, model, validation table and figure, and runs the tests. The event vocabulary
-is frozen in `config/vocabulary_frozen.json`; set `REFREEZE=1` to rebuild it on
-purpose. Each step can also be run on its own:
+or step by step with the command-line tool:
+
+    karyoprog steps                     # list the steps
+    karyoprog run --from 6              # models, validation and figures from the released tables
+    karyoprog run --only 8 AML          # one step, one disease
+    karyoprog report                    # rebuild report/main.tex and the DOCX
+
+`make tables | models | validate | figures | report | pdf | test | lint` wraps the same steps,
+and the Dockerfile pins the exact package versions the results were produced with
+(`requirements-lock.txt`):
+
+    docker build -t mitelman-progression .
+    docker run --rm -v "$PWD:/work" mitelman-progression
+
+Every threshold, resampling count and seed is in `config/analysis.json`; the thresholds were
+fixed before any model was fitted. The event vocabulary is frozen in
+`config/vocabulary_frozen.json`; `REFREEZE=1 bash run_all.sh` rebuilds it on purpose.
+Steps 6 to 11 need only the released tables in `results/tables/`, not the raw download.
 
 | Step | Script | Output |
 |---|---|---|
 | 1 | `scripts/01_build_clone_features.py` | per-clone features and case table (`data/interim/`) |
 | 2 | `scripts/02_power_threshold.py` | minimum event count N per disease (`config/power_threshold.json`) |
-| 3 | `scripts/03_freeze_vocabulary.py` | frozen vocabulary (only with `REFREEZE=1`) |
-| 4 | `scripts/04_build_tables.py` | tidy event table, ordered pairs, case x event matrices |
+| 3 | `scripts/03_freeze_vocabulary.py` | frozen vocabulary (only on request) |
+| 4 | `scripts/04_build_tables.py` | tidy event table, ordered pairs, case x event matrices, case table |
 | 5 | `scripts/05_descriptive.py` | selection-bias, era and data-quality tables |
 | 6 | `scripts/06_cooccurrence.py` | co-occurrence baseline for every disease |
-| 7 | `scripts/07_cbn.py` | CBN fits, bootstrap, held-out likelihood, simulation recovery |
-| 8 | `scripts/08_mhn.py` | MHN fits, lambda by cross-validation, bootstrap, sensitivity, simulation recovery |
-| 9 | `scripts/09_validation.py` | prior-knowledge, clone-order and stop-rule verdicts |
-| 10 | `scripts/10_figures.py` | one figure per disease plus an overview |
+| 7 | `scripts/07_cbn.py` | CBN fits, bootstrap, 5-fold held-out likelihood, simulation recovery |
+| 8 | `scripts/08_mhn.py` | MHN fits, lambda by 5-fold CV, bootstrap, sensitivity, simulation recovery |
+| 9 | `scripts/09_clone_timing.py` | Bradley-Terry event timing from clone orders |
+| 10 | `scripts/10_validation.py` | prior-knowledge, clone-order, timing and stop-rule verdicts |
+| 11 | `scripts/11_figures.py` | one figure per disease, overview and timing figures |
 
-The report is rebuilt from the results with `python report/build_report.py` (writes
-`report/main.tex` and the DOCX); compile `main.tex` with `pdflatex` twice for the PDF.
 `scripts/write_vocabulary_doc.py` regenerates `docs/event_vocabulary.md`;
 `scripts/make_annotation_scaffold.py` drew the 50-karyotype annotation sample.
+The report is rebuilt from the results with `karyoprog report` and compiled with `make pdf`.
 
 ## Layout
 
@@ -60,8 +79,10 @@ The report is rebuilt from the results with `python report/build_report.py` (wri
 - `karyoprog/cooccur.py`: co-occurrence baseline and count-preserving permutation null
 - `karyoprog/cbn.py`: conjunctive Bayesian network with noise (EM, greedy BIC search)
 - `karyoprog/mhn_ssr.py`, `karyoprog/mhnfit.py`: MHN likelihood with state-space restriction, fitting, sampling, order probabilities
-- `karyoprog/common.py`: shared paths and loaders
-- `config/`: candidate and frozen vocabularies, power threshold, prior-knowledge test set
+- `karyoprog/timing.py`: Bradley-Terry event timing from clone orders
+- `karyoprog/common.py`: shared paths, settings and loaders
+- `karyoprog/__main__.py`: the `karyoprog` command-line tool
+- `config/`: analysis settings, candidate and frozen vocabularies, power threshold, prior-knowledge test set
 - `results/tables/`, `results/models/`, `results/figures/`: outputs (see `docs/data_dictionary.md`)
 - `tests/`: parser unit tests and the 50-karyotype hand-annotation harness
 - `docs/`: frozen vocabulary and data dictionary

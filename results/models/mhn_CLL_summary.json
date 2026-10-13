@@ -9,57 +9,144 @@
     "11q-",
     "6q-"
   ],
-  "lambda_c": 0.3,
-  "lambda_": 8.648025367541078e-05,
+  "lambda_c": 0.1,
+  "lambda_": 2.8826751225136928e-05,
   "heldout_loglik": {
     "mhn_by_c": {
-      "0.1": -2.0450712202864985,
-      "0.3": -2.0448600057089967,
-      "1.0": -2.0470074305425596,
-      "3.0": -2.0520326642958455
+      "0.03": -2.043084422050526,
+      "0.1": -2.042921537608964,
+      "0.3": -2.043214226273819,
+      "1.0": -2.0451228922498723,
+      "3.0": -2.0480995552476813
     },
-    "independence": -2.099887629430757
+    "mhn_by_c_sd": {
+      "0.03": 0.037625459756200526,
+      "0.1": 0.03724867833323932,
+      "0.3": 0.037108718169318586,
+      "1.0": 0.03755605349384389,
+      "3.0": 0.0385765000887354
+    },
+    "independence": -2.099169882997498,
+    "independence_sd": 0.04768801069094693,
+    "mhn_folds": [
+      -2.0697687951627386,
+      -2.0746243395065136,
+      -2.025775821518519,
+      -1.985662028367157,
+      -2.0587767034898947
+    ],
+    "independence_folds": [
+      -2.149272249041808,
+      -2.099239720024806,
+      -2.079129807215758,
+      -2.0305745922455554,
+      -2.1376330464595643
+    ]
   },
   "n_unselected": 2169,
   "n_post2000": 2138,
   "simulation_recovery": [
     {
-      "n_true": 15,
+      "n_true": 16,
       "n_called": 15,
-      "recall": 1.0,
-      "precision": 1.0,
-      "corr_offdiag": 0.80595947224295
+      "recall": 0.75,
+      "precision": 0.8,
+      "corr_offdiag": 0.1250377838790043
     },
     {
-      "n_true": 15,
-      "n_called": 17,
-      "recall": 1.0,
-      "precision": 0.8823529411764706,
-      "corr_offdiag": 0.6091691871820911
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.75,
+      "precision": 0.8,
+      "corr_offdiag": 0.21865788943380685
     },
     {
-      "n_true": 15,
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.8125,
+      "precision": 0.8666666666666667,
+      "corr_offdiag": 0.2139597685415877
+    },
+    {
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.75,
+      "precision": 0.8,
+      "corr_offdiag": 0.026752281530949374
+    },
+    {
+      "n_true": 16,
       "n_called": 16,
-      "recall": 0.8666666666666667,
+      "recall": 0.8125,
       "precision": 0.8125,
-      "corr_offdiag": 0.7283826730657351
+      "corr_offdiag": 0.14371543896616779
+    },
+    {
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.6875,
+      "precision": 0.7333333333333333,
+      "corr_offdiag": -0.13794944598241624
+    },
+    {
+      "n_true": 16,
+      "n_called": 16,
+      "recall": 0.875,
+      "precision": 0.875,
+      "corr_offdiag": 0.16251160370168424
+    },
+    {
+      "n_true": 16,
+      "n_called": 16,
+      "recall": 0.6875,
+      "precision": 0.6875,
+      "corr_offdiag": -0.114020704638486
+    },
+    {
+      "n_true": 16,
+      "n_called": 16,
+      "recall": 0.8125,
+      "precision": 0.8125,
+      "corr_offdiag": 0.4267576427312208
+    },
+    {
+      "n_true": 16,
+      "n_called": 17,
+      "recall": 0.875,
+      "precision": 0.8235294117647058,
+      "corr_offdiag": 0.820270750313874
     }
   ],
   "sensitivity": {
     "unselected": {
-      "n_true": 15,
-      "n_called": 16,
-      "recall": 0.9333333333333333,
-      "precision": 0.875,
-      "corr_offdiag": 0.9521942871499143
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.875,
+      "precision": 0.9333333333333333,
+      "corr_offdiag": 0.9577100948861036
     },
     "post2000": {
-      "n_true": 15,
-      "n_called": 16,
-      "recall": 0.9333333333333333,
-      "precision": 0.875,
-      "corr_offdiag": 0.9769613905961694
+      "n_true": 16,
+      "n_called": 15,
+      "recall": 0.875,
+      "precision": 0.9333333333333333,
+      "corr_offdiag": 0.9607388459827287
     }
   },
-  "n_strong_edges": 15
+  "n_strong_edges": 16,
+  "settings": {
+    "lambda_c_grid": [
+      0.03,
+      0.1,
+      0.3,
+      1.0,
+      3.0
+    ],
+    "n_bootstrap": 100,
+    "n_simulations": 10,
+    "cv_folds": 5,
+    "order_trajectories": 20000,
+    "bootstrap_order_trajectories": 4000,
+    "seed": 11
+  }
 }

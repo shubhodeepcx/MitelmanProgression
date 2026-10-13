@@ -1,5 +1,5 @@
 # Author: Shubhodeep Chatterjee
-"""One figure per disease, with uncertainty (run after 06-09).
+"""One figure per disease, with uncertainty (run after 06-10).
 
 Ordering diseases (>= 200 cases with clone order): four panels
   a  MHN log-theta matrix (row = affected event, column = acting event); a dot marks
@@ -11,7 +11,9 @@ Ordering diseases (>= 200 cases with clone order): four panels
   d  for the event pairs with the most within-patient clone evidence: the MHN's P(a before b |
      both), with bootstrap 10-90% interval, next to the share of clone pairs ordered a -> b
 Co-occurrence-only diseases (APL, MM): panel c alone.
-Writes results/figures/<disease>.png and .pdf, and results/figures/overview.png.
+Also: overview.png (held-out gain and stability) and clone_timing.png (Bradley-Terry earliness
+from clone orders, 90% case-bootstrap intervals, with the MHN's ordering of the same events).
+Writes results/figures/<disease>.png and .pdf, overview.png/.pdf and clone_timing.png/.pdf.
 """
 import sys, json
 from pathlib import Path
@@ -23,9 +25,9 @@ matplotlib.use("Agg")
 import matplotlib.pyplot as plt
 from matplotlib.colors import TwoSlopeNorm
 import networkx as nx
-from karyoprog.common import TABLES, MODELS, FIGURES, ALL_DISEASES, ordering_diseases
+from karyoprog.common import TABLES, MODELS, FIGURES, ALL_DISEASES, THRESH, ordering_diseases
 
-STRONG, STABLE = 0.5, 0.8
+STRONG, STABLE = THRESH["edge_abs_log_theta"], THRESH["stable_sign_agreement"]
 MAX_EDGES = 25          # progression map shows the strongest stable edges only
 plt.rcParams.update({"font.size": 8, "axes.titlesize": 9, "axes.titleweight": "bold",
                      "font.family": "DejaVu Sans", "savefig.dpi": 200})
@@ -165,3 +167,27 @@ if __name__ == "__main__":
     axs[1].set_xticks(x, sm.disease); axs[1].set_ylim(0, 1); axs[1].set_ylabel("share of MHN edges stable")
     fig.tight_layout(); fig.savefig(FIGURES / "overview.png", bbox_inches="tight"); fig.savefig(FIGURES / "overview.pdf", bbox_inches="tight")
     print("wrote overview")
+
+    # clone timing: Bradley-Terry earliness per disease, with the MHN's mean P(event first) for comparison
+    fig, axs = plt.subplots(1, len(order_d), figsize=(3.1 * len(order_d), 4.6), squeeze=False)
+    for ax, d in zip(axs[0], order_d):
+        t = pd.read_csv(TABLES / f"clone_timing_{d}.csv").iloc[::-1]
+        y = np.arange(len(t))
+        ax.errorbar(t.earliness, y, xerr=[t.earliness - t.ci05, t.ci95 - t.earliness], fmt="o", ms=3.5,
+                    color="#b35806", capsize=2, lw=1)
+        ax.axvline(0, color="grey", lw=0.6, ls="--")
+        ax.set_yticks(y, t.event, fontsize=7)
+        ax.set_title(d)
+        ax.set_xlabel("earliness (log-odds)")
+        z = np.load(MODELS / f"mhn_{d}.npz", allow_pickle=True)
+        ev, P = list(z["events"]), z["order_P"]
+        ax2 = ax.twiny()
+        mhn_first = [np.nanmean(P[ev.index(e)]) if e in ev else np.nan for e in t.event]
+        ax2.plot(mhn_first, y, "s", ms=3, color="#2166ac", alpha=0.8)
+        ax2.set_xlim(0, 1); ax2.tick_params(axis="x", labelsize=6, colors="#2166ac")
+        ax2.set_xlabel("MHN: mean P(event first)", fontsize=7, color="#2166ac")
+    fig.suptitle("Event timing from within-patient clone orders (orange, 90% case-bootstrap interval) "
+                 "and the MHN's ordering of the same events (blue)", fontsize=9)
+    fig.tight_layout()
+    fig.savefig(FIGURES / "clone_timing.png", bbox_inches="tight"); fig.savefig(FIGURES / "clone_timing.pdf", bbox_inches="tight")
+    print("wrote clone_timing")

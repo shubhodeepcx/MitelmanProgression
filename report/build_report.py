@@ -10,7 +10,7 @@ sys.path.insert(0, str(ROOT)); sys.path.insert(0, str(HERE))
 import numpy as np
 import pandas as pd
 from render import to_latex, to_docx
-from karyoprog.common import TABLES, MODELS, FIGURES, ALL_DISEASES, DERIVED_EVENTS, ordering_diseases
+from karyoprog.common import TABLES, MODELS, FIGURES, ALL_DISEASES, DERIVED_EVENTS, CONFIG as CFG, THRESH as TH, ordering_diseases
 
 order_d = ordering_diseases()
 yld = pd.read_csv(TABLES / "ordering_yield.csv", index_col=0)
@@ -25,6 +25,9 @@ cbn = {d: json.loads((MODELS / f"cbn_{d}.json").read_text()) for d in order_d}
 mhn = {d: json.loads((MODELS / f"mhn_{d}_summary.json").read_text()) for d in order_d}
 cooc = {d: pd.read_csv(TABLES / f"cooccurrence_{d}.csv") for d in ALL_DISEASES}
 edges = {d: pd.read_csv(TABLES / f"mhn_edges_{d}.csv") for d in order_d}
+import subprocess
+N_TESTS = sum(1 for line in subprocess.run([sys.executable, "-m", "pytest", "--collect-only", "-q", str(ROOT / "tests")],
+                                            capture_output=True, text=True, cwd=ROOT).stdout.splitlines() if "::" in line)
 f2 = lambda x: f"{x:.2f}"
 f3 = lambda x: f"{x:.3f}"
 n_total = int(yld.cases.sum())
@@ -49,10 +52,11 @@ t_cooc = ("table", "tab:cooc", "Pairwise baseline: pairs significant under both 
 rows = []
 for d in order_d:
     v = vs.loc[d]
-    rows.append([d, int(v.model_events), f2(v.lambda_c), f3(v.heldout_mhn), f3(v.heldout_independence),
+    rows.append([d, int(v.model_events), f"{v.lambda_c:g}", f"{v.heldout_mhn:.3f} ± {v.heldout_mhn_sd:.3f}",
+                 f"{v.heldout_independence:.3f} ± {v.heldout_independence_sd:.3f}",
                  int(v.mhn_strong_edges), int(v.mhn_stable_edges), f2(v.mhn_frac_stable),
                  f"{v.mhn_sim_precision:.2f}/{v.mhn_sim_recall:.2f}", f2(v.unselected_corr), f2(v.post2000_corr)])
-t_mhn = ("table", "tab:mhn", "MHN fits and validation. Held-out values are mean log-likelihood per case (2-fold). Stable: bootstrap sign agreement ≥ 0.8. Sim P/R: simulation-recovery precision and recall. U and 2000+: correlation of off-diagonal log θ between the full fit and the refits on unselected series and on cases published from 2000.",
+t_mhn = ("table", "tab:mhn", f"MHN fits and validation. Held-out values are mean log-likelihood per case ± SD across {CFG['mhn']['cv_folds']} folds. Stable: sign kept in ≥ {TH['stable_sign_agreement']:.0%} of {CFG['mhn']['n_bootstrap']} bootstrap refits. Sim P/R: simulation-recovery precision and recall. U and 2000+: correlation of off-diagonal log θ between the full fit and the refits on unselected series and on cases published from 2000.",
          ["Disease", "Events", "c", "MHN", "Indep.", "Edges", "Stable", "Share", "Sim P/R", "U r", "2000+ r"],
          rows, "lrrrrrrrrrr", True)
 
@@ -63,7 +67,7 @@ for d in order_d:
     es = "; ".join(f"{ev[a]} → {ev[b]} ({C[a, b]:.2f})" for a, b in zip(*np.nonzero(R))) or "none"
     rows.append([d, f3(v.cbn_eps), f3(v.heldout_cbn), f3(v.heldout_mhn_cbn_events), f3(v.heldout_indep_cbn_events),
                  f"{v.cbn_sim_precision:.2f}/{v.cbn_sim_recall:.2f}", es])
-t_cbn = ("table", "tab:cbn", "CBN on the 10 most frequent model events per disease: noise ε, held-out log-likelihood per case against an MHN and an independence model on the same events, simulation recovery, and the cover relations of the fitted poset with their bootstrap frequency.",
+t_cbn = ("table", "tab:cbn", f"CBN on the {CFG['cbn']['n_events']} most frequent model events per disease: noise ε, {CFG['cbn']['cv_folds']}-fold held-out log-likelihood per case against an MHN and an independence model on the same events, simulation recovery, and the cover relations of the fitted poset with their frequency in {CFG['cbn']['n_bootstrap']} bootstrap refits.",
          ["Disease", "ε", "CBN", "MHN", "Indep.", "Sim P/R", "Poset cover relations (bootstrap)"],
          rows, "lrrrrrp{8.2cm}", True)
 
@@ -84,11 +88,15 @@ for r in pk.itertuples():
 t_pk = ("table", "tab:pk", "Prior-knowledge test set, written before the fits. Clone a:b counts parent-to-child clone pairs ordered a→b and b→a (non-duplicate cases); clone check needs ≥ 5 pairs. n/a: an event outside that model's vocabulary.",
         ["Disease", "Relationship", "Baseline", "MHN", "CBN", "Clone a:b", "Clone"], rows, "llccccc", True)
 
-rows = [[d, int(co.loc[d, "pairs_compared"]), f"{int(co.loc[d, 'cases_in_pairs']):,}", f2(co.loc[d, "direction_agreement"]),
-         f2(co.loc[d, "weighted_agreement"]), f2(co.loc[d, "spearman"]) if pd.notna(co.loc[d, "spearman"]) else "n/a"]
+tmv = pd.read_csv(TABLES / "validation_timing.csv").set_index("disease")
+rows = [[d, int(co.loc[d, "pairs_compared"]), f2(co.loc[d, "direction_agreement"]), f2(co.loc[d, "weighted_agreement"]),
+         f"{int(round(co.loc[d, 'cbn_agreement'] * co.loc[d, 'cbn_orders_compared']))}/{int(co.loc[d, 'cbn_orders_compared'])}",
+         f"{tmv.loc[d, 'mhn_vs_bt_agreement']:.2f} ({int(tmv.loc[d, 'mhn_vs_bt_pairs'])})",
+         f"{int(round(tmv.loc[d, 'cbn_vs_bt_agreement'] * tmv.loc[d, 'cbn_vs_bt_orders']))}/{int(tmv.loc[d, 'cbn_vs_bt_orders'])}"
+         if tmv.loc[d, "cbn_vs_bt_orders"] > 0 else "n/a"]
         for d in order_d]
-t_clone = ("table", "tab:clone", "Out-of-sample check: MHN order probabilities (fitted on cross-sectional presence/absence) against the direction of event pairs in parent-to-child clone edges (pairs seen in ≥ 10 cases).",
-           ["Disease", "Pairs", "Clone pairs", "Agree", "Weighted", "Spearman"], rows, "lrrrrr", False)
+t_clone = ("table", "tab:clone", f"Out-of-sample check against the clone trees. Left: MHN order probabilities against the direction of event pairs seen in ≥ {TH['min_clone_pairs_for_order_check']} parent-to-child clone pairs (share agreeing, unweighted and weighted by pairs), and CBN implied orders against the same pairs. Right: agreement with the Bradley-Terry clone timing on event pairs whose timing order is bootstrap-stable (number of pairs in brackets).",
+           ["Disease", "Pairs", "MHN", "MHN wt.", "CBN", "MHN vs BT", "CBN vs BT"], rows, "lrrrrrr", True)
 
 from scipy.stats import binomtest
 pairs = pd.read_csv(TABLES / "ordered_pairs.tsv.gz", sep="\t")
@@ -112,8 +120,20 @@ for d in order_d:
 t_cloneorders = ("table", "tab:cloneorders", "Model-free orders: the event pairs most often split between a parent clone and its child (non-duplicate cases), with a two-sided sign test.",
                  ["Disease", "Order", "a→b : b→a", "p"], rows, "lllr", False)
 
+rows = []
+for d in order_d:
+    t = pd.read_csv(TABLES / f"clone_timing_{d}.csv")
+    rows.append([d, " > ".join(f"{r.event} [{r.rank_ci05}-{r.rank_ci95}]" for r in t.itertuples())])
+t_timing = ("table", "tab:timing", f"Event timing from clone orders: events from earliest to latest by Bradley-Terry earliness, with the 90% case-bootstrap interval of each rank ({CFG['clone_timing']['n_bootstrap']} resamples).",
+            ["Disease", "Order (rank interval)"], rows, "lp{15.2cm}", True)
+supp_figs = [("figure", f"fig:supp{d}", str(FIGURES / f"{d}.png"),
+              (f"{d}, panels as in {{ref:fig:aml}}." if d in order_d else f"{d}: co-occurrence baseline only (fewer than {TH['min_cases_with_clone_order']} cases with a clone order); * significant."),
+              d in order_d) for d in ALL_DISEASES if d not in ("AML", "CML")]
+
 # ------------------------------------------------------------------ text
-exec((HERE / "report_text.py").read_text())     # defines META, BLOCKS, REFS from the variables above
+_ns = dict(globals())
+exec((HERE / "report_text.py").read_text(), _ns)   # report text, written against the variables above
+META, BLOCKS, REFS = _ns["META"], _ns["BLOCKS"], _ns["REFS"]
 
 out_tex = HERE / "main.tex"
 (HERE / "figures").mkdir(exist_ok=True)

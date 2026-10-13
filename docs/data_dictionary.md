@@ -21,6 +21,11 @@ One row per case, investigation, abnormal clone and event.
 | Year | publication year |
 | is_duplicate | likely the same patient as a case in an earlier paper (see karyoprog/dedup.py); exclude for modelling |
 
+## cases.tsv.gz
+One row per case in the seven diseases: case_id, RefNo, CaseNo, disease, Morph (Mitelman
+morphology code), Series (U/S), Year, Pubmed, is_duplicate. The model scripts read Series
+and Year from here, so steps 6 to 11 run from the released tables without the raw download.
+
 ## ordered_pairs.tsv.gz
 One row per case and (earlier, later) event pair, from parent-to-child clone edges: every
 event in the parent precedes every event the child adds. Columns: case_id, InvNo,
@@ -53,30 +58,38 @@ expected_null (mean co-occurrence under the count-preserving permutation null), 
 q_perm (Benjamini-Hochberg), direction (relative to the permutation null), significant
 (both q < 0.05 and both tests agree on the direction).
 
+## clone_timing_<disease>.csv
+Model-free timing from within-patient clone orders (scripts/09_clone_timing.py): for each
+event seen in at least 10 ordered pairs, the Bradley-Terry earliness score (higher = earlier),
+its 90% case-bootstrap interval, its rank and rank interval, and the number of pairs involving it.
+
 ## mhn_edges_<disease>.csv
 Every MHN interaction (scripts/09_validation.py): source (acting event), target (affected
 event), log_theta, sign_stability (share of 25 bootstrap refits with the same sign), strong
 (|log theta| >= 0.5).
 
-## validation_prior_knowledge.csv, validation_clone_order.csv, validation_summary.csv
+## validation_prior_knowledge.csv, validation_clone_order.csv, validation_summary.csv, validation_timing.csv
 Validation (scripts/09_validation.py): each relationship in config/prior_knowledge.json
 checked against the baseline, the MHN, the CBN and the within-patient clone orders; how
 often the MHN's simulated order agrees with the direction seen in parent-to-child clone
-pairs; and one row per disease with held-out log-likelihoods, simulation recovery,
-bootstrap stability, sensitivity refits and the stop-rule verdicts.
+pairs; one row per disease with held-out log-likelihoods (5-fold mean and SD), simulation
+recovery, bootstrap stability, sensitivity refits and the stop-rule verdicts; and how often
+the MHN and CBN orders agree with the Bradley-Terry clone timing, with a 2x2 count of MHN
+order errors by whether the clone-later event has the higher MHN base rate.
 
 # Model outputs (results/models/)
 
 - `cbn_<disease>.json`: events, poset P and its transitive reduction, theta, epsilon,
   log-likelihood, BIC, bootstrap frequency of each implied order (closure), simulation
-  recovery and held-out log-likelihoods (CBN, MHN on the same events, independence).
+  recovery and 5-fold held-out log-likelihoods (CBN, MHN on the same events, independence).
 - `mhn_<disease>.npz`: events, log theta, 25 bootstrap log thetas, the Unselected-only and
   post-2000 refits, order probabilities P(i before j | both) and their bootstrap copies.
-- `mhn_<disease>_summary.json`: lambda choice, held-out log-likelihoods, simulation recovery
-  and sensitivity agreement.
+- `mhn_<disease>_summary.json`: lambda choice, 5-fold held-out log-likelihoods, simulation
+  recovery and sensitivity agreement, and the settings used.
+- `clone_timing_<disease>.npz`: Bradley-Terry scores and their bootstrap copies.
 
 # Figures (results/figures/)
 
-One figure per disease (`<disease>.png` and `.pdf`) and `overview.png`; see
-scripts/10_figures.py for the panels.
+One figure per disease (`<disease>.png` and `.pdf`), `overview.png` and `clone_timing.png`;
+see scripts/11_figures.py for the panels.
 
