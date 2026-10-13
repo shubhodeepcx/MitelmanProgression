@@ -6,12 +6,14 @@ results/tables/
   ordered_pairs.tsv.gz      one row per (case, earlier event, later event) from parent->child clone edges
   matrix_<disease>.tsv.gz   case x event 0/1 matrix, first investigation, duplicates removed (model input)
   ordering_yield.csv        cases per disease with >=1 event-level ordered pair (go/no-go, frozen vocabulary)
+  cases.tsv.gz              one row per case in the seven diseases: ids, disease, series, year, duplicate flag
 """
 import sys
 from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]; sys.path.insert(0, str(ROOT))
 import pandas as pd
 from karyoprog.pipeline import load_vocabulary, tidy_event_table, INTERIM
+from karyoprog.common import THRESH
 
 OUT = ROOT / "results/tables"; OUT.mkdir(parents=True, exist_ok=True)
 vocab = load_vocabulary()
@@ -19,6 +21,10 @@ cf = pd.read_csv(INTERIM / "clone_features.tsv.gz", sep="\t", keep_default_na=Fa
                  dtype={"parent_clone": "Int64"})
 cases = pd.read_csv(INTERIM / "cases.tsv.gz", sep="\t")
 cases["is_duplicate"] = cases.is_duplicate.astype(bool)
+
+(cases[cases.disease.isin(vocab["diseases"].keys())]
+ [["case_id", "RefNo", "CaseNo", "disease", "Morph", "Series", "Year", "Pubmed", "is_duplicate"]]
+ .to_csv(OUT / "cases.tsv.gz", sep="\t", index=False))
 
 ev = tidy_event_table(cf, cases, vocab)
 ev.to_csv(OUT / "event_table.tsv.gz", sep="\t", index=False)
@@ -57,7 +63,7 @@ y = pd.DataFrame({
     "cases_with_order": nd.groupby("disease").case_id.nunique(),
     "of_which_unselected": nd[nd.Series == "U"].groupby("disease").case_id.nunique(),
 }).loc[list(vocab["diseases"])].fillna(0).astype(int)
-y["meets_200_rule"] = y.cases_with_order >= 200
+y["meets_200_rule"] = y.cases_with_order >= THRESH["min_cases_with_clone_order"]
 y.to_csv(OUT / "ordering_yield.csv")
 print(y.to_string())
 print("event rows:", len(ev), " ordered pairs:", len(pairs))

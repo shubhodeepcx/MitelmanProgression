@@ -1,0 +1,20 @@
+{
+  "_doc": "Pre-specified analysis settings (Shubhodeep Chatterjee). Thresholds were fixed before any model was fitted; counts and seeds control the resampling. Every script reads this file.",
+  "thresholds": {
+    "edge_abs_log_theta": 0.5,
+    "stable_sign_agreement": 0.8,
+    "sim_recovery_precision": 0.8,
+    "sim_recovery_recall": 0.5,
+    "supported_share_of_stable_edges": 0.5,
+    "fdr_q": 0.05,
+    "min_cases_with_clone_order": 200,
+    "min_clone_pairs_for_order_check": 10,
+    "min_clone_pairs_for_prior_check": 5
+  },
+  "cooccurrence": {"n_permutations": 2000, "seed": 1},
+  "cbn": {"n_events": 10, "n_bootstrap": 50, "n_simulations": 10, "cv_folds": 5, "seed": 7},
+  "mhn": {"lambda_c_grid": [0.03, 0.1, 0.3, 1.0, 3.0], "n_bootstrap": 100, "n_simulations": 10,
+          "cv_folds": 5, "order_trajectories": 20000, "bootstrap_order_trajectories": 4000, "seed": 11},
+  "clone_timing": {"n_bootstrap": 500, "min_pairs_per_event": 10, "ridge": 0.01, "seed": 13},
+  "processes": 4
+}

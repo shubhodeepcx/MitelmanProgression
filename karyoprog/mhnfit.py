@@ -118,3 +118,14 @@ def order_probabilities(log_theta, n_traj=20000, rng=None):
     with np.errstate(invalid="ignore", divide="ignore"):
         P = np.where(both > 0, before / both, np.nan)
     return P, both / n_traj
+
+
+def edge_recovery(T_true, T_hat, strong=0.5):
+    """Agreement between two MHNs on their edges (|log theta| >= strong, same sign)."""
+    off = ~np.eye(len(T_true), dtype=bool)
+    true = off & (np.abs(T_true) >= strong)
+    hat = off & (np.abs(T_hat) >= strong)
+    tp = (true & hat & (np.sign(T_true) == np.sign(T_hat))).sum()
+    return dict(n_true=int(true.sum()), n_called=int(hat.sum()),
+                recall=float(tp / max(true.sum(), 1)), precision=float(tp / max(hat.sum(), 1)),
+                corr_offdiag=float(np.corrcoef(T_true[off], T_hat[off])[0, 1]))

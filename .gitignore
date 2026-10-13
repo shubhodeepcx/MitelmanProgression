@@ -7,3 +7,4 @@ data/interim/
 *.log
 *.out
 report/main.pdf
+.ruff_cache/

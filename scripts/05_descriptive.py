@@ -42,4 +42,5 @@ q = pd.DataFrame({
 q.round(1).to_csv(TABLES / "data_quality.csv")
 print(q.round(1).to_string())
 s = pd.DataFrame(rows)
-print(s[s.disease == "AML"].sort_values("pct_all", ascending=False)[["event", "pct_unselected", "pct_selected", "selected_to_unselected"]].round(2).head(12).to_string(index=False))
+cols = ["event", "pct_unselected", "pct_selected", "selected_to_unselected"]
+print(s[s.disease == "AML"].sort_values("pct_all", ascending=False)[cols].round(2).head(12).to_string(index=False))

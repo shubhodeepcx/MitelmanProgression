@@ -41,7 +41,6 @@ def permutation_null(X, n_perm=1000, rng=None, chunk=50):
     k = X.sum(1)
     logw = np.log(_null_weights(X))
     n = X.shape[1]
-    order_rank = np.arange(n)
     done = 0
     while done < n_perm:
         b = min(chunk, n_perm - done)
@@ -53,7 +52,7 @@ def permutation_null(X, n_perm=1000, rng=None, chunk=50):
         done += b
 
 
-def pairwise(X, names, n_perm=1000, rng=None):
+def pairwise(X, names, n_perm=1000, rng=None, q=0.05):
     X = np.asarray(X, dtype=np.int64)
     N, n = X.shape
     C = X.T @ X
@@ -78,5 +77,5 @@ def pairwise(X, names, n_perm=1000, rng=None):
     # significant only if both tests reject and agree on the direction (Fisher's is relative to
     # independence, the permutation test's to the count-preserving null)
     same_dir = (df.odds_ratio > 1) == (df.direction == "co-occurring")
-    df["significant"] = (df.q_fisher < 0.05) & (df.q_perm < 0.05) & same_dir
+    df["significant"] = (df.q_fisher < q) & (df.q_perm < q) & same_dir
     return df

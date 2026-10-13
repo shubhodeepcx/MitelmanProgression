@@ -13,11 +13,15 @@ INTERIM = ROOT / "data" / "interim"
 
 ALL_DISEASES = ["AML", "APL", "MDS", "CML", "ALL", "CLL", "MM"]
 
+# Pre-specified thresholds, resampling counts and seeds (config/analysis.json).
+CONFIG = json.loads((ROOT / "config" / "analysis.json").read_text())
+THRESH = CONFIG["thresholds"]
+
 
 def ordering_diseases():
     """Diseases that pass the 200-case stop rule (results/tables/ordering_yield.csv)."""
     y = pd.read_csv(TABLES / "ordering_yield.csv", index_col=0)
-    return [d for d in y.index if bool(y.loc[d, "meets_200_rule"])]
+    return [d for d in y.index if int(y.loc[d, "cases_with_order"]) >= THRESH["min_cases_with_clone_order"]]
 
 
 # Events defined by counting other aberrations. They stay in the vocabulary and the
@@ -33,9 +37,16 @@ def load_matrix(disease, for_model=False):
     m = pd.read_csv(TABLES / f"matrix_{disease}.tsv.gz", sep="\t", index_col=0)
     if for_model:
         m = m[[c for c in m.columns if c not in DERIVED_EVENTS]]
-    cases = pd.read_csv(INTERIM / "cases.tsv.gz", sep="\t").set_index("case_id")
+    cases = pd.read_csv(TABLES / "cases.tsv.gz", sep="\t").set_index("case_id")
     cov = cases.loc[m.index, ["Series", "Year"]]
     return m, cov
+
+
+def kfold_indices(n, k, seed):
+    """k (train, test) index pairs from one fixed random permutation of range(n)."""
+    perm = np.random.default_rng(seed).permutation(n)
+    parts = np.array_split(perm, k)
+    return [(np.concatenate(parts[:i] + parts[i + 1:]), parts[i]) for i in range(k)]
 
 
 def save_json(obj, path):
